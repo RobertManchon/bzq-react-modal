@@ -3,12 +3,16 @@ import React, { useEffect } from 'react';
 import ReactDom from 'react-dom';
 import 'lib/components/Modal/Modal.css';
 
-function Modal({ 
-    isShowing,
-    hide,
-    children,
-    addCloseEscape,
-}) {
+function Modal({
+                   isShowing,
+                   hide,
+                   children,
+                   addCloseEscape,
+                   addCloseOverlay,
+                   addCloseIcon,
+                   customClassName,
+                   addButtonFooter,
+               }) {
     useEffect(() => {
         return window.addEventListener('keyup', (e) => {
             if (addCloseEscape) {
@@ -31,29 +35,45 @@ function Modal({
 
     return isShowing ? ReactDom.createPortal(
         <>
-            <div className='modalOverlay'>
-                <div className='modalWrapper' >
-                    <aside className='modal'>
-                        <header className='modalHeader'>
-                            <button 
-                                aria-label='Close' 
-                                className='modalCloseButton'
-                                data-dismiss='modal' 
-                                onClick={hide}
-                                type='button' 
-                            >
-                                <FaTimes/>
-                            </button>
+            <div
+                className={`modalOverlay ${customClassName ? 'modalOverlay-' + customClassName : ''}`}
+                onClick={addCloseOverlay ? closeModal : null}
+            >
+                <div className={`modalWrapper ${customClassName ? 'modalWrapper-' + customClassName : ''}`}>
+                    <aside className={`modal ${customClassName ? 'modal-' + customClassName : ''}`}>
+                        <header className={`modalHeader ${customClassName ? 'modalHeader-' + customClassName : ''}`} >
+                            {addCloseIcon
+                                && (
+                                    <button
+                                        aria-label='Close'
+                                        className={`modalCloseButton ${customClassName ? 'modalCloseButton-' + customClassName : ''}`}
+                                        data-dismiss='modal'
+                                        onClick={hide}
+                                        type='button'
+                                    >
+                                        <FaTimes/>
+                                    </button>
+                                )
+                            }
                         </header>
-                        <section className='modalSection'>
+                        <section className={`modalSection ${customClassName ? 'modalSection-' + customClassName : ''}`}>
                             {children}
                         </section>
-                        <footer className='modalFooter'>
-                            <button className='modalButton' onClick={hide}>Close Modal</button>
+                        <footer className={`modalFooter ${customClassName ? 'modalFooter-' + customClassName : ''}`}>
+                            {addButtonFooter
+                                && (
+                                    <button
+                                        className={`modalButton ${customClassName ? 'modalButton-' + customClassName : ''}`}
+                                        onClick={hide}
+                                    >
+                                        Close Modal
+                                    </button>
+                                )
+                            }
                         </footer>
                     </aside>
                 </div>
-            </div>    
+            </div>
         </>,
         document.getElementById('portal')
     ) : '';
