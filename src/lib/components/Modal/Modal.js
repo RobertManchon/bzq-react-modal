@@ -2,17 +2,19 @@ import { FaTimes } from 'react-icons/fa';
 import React, { useEffect } from 'react';
 import ReactDom from 'react-dom';
 import 'lib/components/Modal/Modal.css';
+import Spinner from 'lib/components/Spinner/Spinner';
 
-function Modal({
-                   isShowing,
-                   hide,
-                   children,
-                   addCloseEscape,
-                   addCloseOverlay,
-                   addCloseIcon,
-                   customClassName,
-                   addButtonFooter,
-               }) {
+function Modal({ 
+    isShowing,
+    hide,
+    children,
+    addCloseEscape,
+    addCloseOverlay,
+    addCloseIcon,
+    customClassName,
+    addFooterButton,
+    spinner,
+}) {
     useEffect(() => {
         return window.addEventListener('keyup', (e) => {
             if (addCloseEscape) {
@@ -35,21 +37,21 @@ function Modal({
 
     return isShowing ? ReactDom.createPortal(
         <>
-            <div
-                className={`modalOverlay ${customClassName ? 'modalOverlay-' + customClassName : ''}`}
+            <div 
+                className={`modalOverlay ${customClassName ? 'modalOverlay-' + customClassName : ''}`} 
                 onClick={addCloseOverlay ? closeModal : null}
             >
                 <div className={`modalWrapper ${customClassName ? 'modalWrapper-' + customClassName : ''}`}>
                     <aside className={`modal ${customClassName ? 'modal-' + customClassName : ''}`}>
                         <header className={`modalHeader ${customClassName ? 'modalHeader-' + customClassName : ''}`} >
-                            {addCloseIcon
+                            {addCloseIcon 
                                 && (
-                                    <button
-                                        aria-label='Close'
+                                    <button 
+                                        aria-label='Close' 
                                         className={`modalCloseButton ${customClassName ? 'modalCloseButton-' + customClassName : ''}`}
-                                        data-dismiss='modal'
+                                        data-dismiss='modal' 
                                         onClick={hide}
-                                        type='button'
+                                        type='button' 
                                     >
                                         <FaTimes/>
                                     </button>
@@ -60,10 +62,10 @@ function Modal({
                             {children}
                         </section>
                         <footer className={`modalFooter ${customClassName ? 'modalFooter-' + customClassName : ''}`}>
-                            {addButtonFooter
+                            {addFooterButton
                                 && (
-                                    <button
-                                        className={`modalButton ${customClassName ? 'modalButton-' + customClassName : ''}`}
+                                    <button 
+                                        className={`modalButton ${customClassName ? 'modalButton-' + customClassName : ''}`} 
                                         onClick={hide}
                                     >
                                         Close Modal
@@ -73,10 +75,15 @@ function Modal({
                         </footer>
                     </aside>
                 </div>
-            </div>
+            </div>    
         </>,
         document.getElementById('portal')
-    ) : '';
+    ) : spinner 
+    ? ReactDom.createPortal
+    (
+        <Spinner customClassName={customClassName}/>, document.getElementById('portal')
+    )
+    : null;
 };
 
 export default Modal;
