@@ -1,20 +1,21 @@
 import { FaTimes } from 'react-icons/fa';
+import 'lib/components/Modal/Modal.css';
+import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import ReactDom from 'react-dom';
-import 'lib/components/Modal/Modal.css';
 import Spinner from 'lib/components/Spinner/Spinner';
 
-function Modal({ 
-    isShowing,
-    hide,
-    children,
-    addCloseEscape,
-    addCloseOverlay,
-    addCloseIcon,
-    customClassName,
-    addFooterButton,
-    spinner,
-}) {
+const Modal = ({
+                   isShowing,
+                   hide,
+                   children,
+                   addCloseEscape,
+                   addCloseOverlay,
+                   addCloseIcon,
+                   customClassName,
+                   addFooterButton,
+                   spinner,
+               }) => {
     useEffect(() => {
         return window.addEventListener('keyup', (e) => {
             if (addCloseEscape) {
@@ -27,31 +28,31 @@ function Modal({
         if (isShowing) {
             hide();
         };
-    }
+    };
 
     const closeModalEvent = e => {
         if(e.key === 'Escape') {
             closeModal();
         };
-    }
+    };
 
     return isShowing ? ReactDom.createPortal(
         <>
-            <div 
-                className={`modalOverlay ${customClassName ? 'modalOverlay-' + customClassName : ''}`} 
+            <div
+                className={`modalOverlay ${customClassName ? 'modalOverlay-' + customClassName : ''}`}
                 onClick={addCloseOverlay ? closeModal : null}
             >
-                <div className={`modalWrapper ${customClassName ? 'modalWrapper-' + customClassName : ''}`}>
-                    <aside className={`modal ${customClassName ? 'modal-' + customClassName : ''}`}>
+                <aside className={`modalWrapper ${customClassName ? 'modalWrapper-' + customClassName : ''}`}>
+                    <section className={`modal ${customClassName ? 'modal-' + customClassName : ''}`}>
                         <header className={`modalHeader ${customClassName ? 'modalHeader-' + customClassName : ''}`} >
-                            {addCloseIcon 
+                            {addCloseIcon
                                 && (
-                                    <button 
-                                        aria-label='Close' 
+                                    <button
+                                        aria-label='Close'
                                         className={`modalCloseButton ${customClassName ? 'modalCloseButton-' + customClassName : ''}`}
-                                        data-dismiss='modal' 
+                                        data-dismiss='modal'
                                         onClick={hide}
-                                        type='button' 
+                                        type='button'
                                     >
                                         <FaTimes/>
                                     </button>
@@ -64,8 +65,8 @@ function Modal({
                         <footer className={`modalFooter ${customClassName ? 'modalFooter-' + customClassName : ''}`}>
                             {addFooterButton
                                 && (
-                                    <button 
-                                        className={`modalButton ${customClassName ? 'modalButton-' + customClassName : ''}`} 
+                                    <button
+                                        className={`modalButton ${customClassName ? 'modalButton-' + customClassName : ''}`}
                                         onClick={hide}
                                     >
                                         Close Modal
@@ -73,17 +74,29 @@ function Modal({
                                 )
                             }
                         </footer>
-                    </aside>
-                </div>
-            </div>    
+                    </section>
+                </aside>
+            </div>
         </>,
         document.getElementById('portal')
-    ) : spinner 
-    ? ReactDom.createPortal
-    (
-        <Spinner customClassName={customClassName}/>, document.getElementById('portal')
-    )
-    : null;
+    ) : spinner
+        ? ReactDom.createPortal
+        (
+            <Spinner customClassName={customClassName}/>, document.getElementById('portal')
+        )
+        : null;
+};
+
+Modal.propTypes = {
+    isShowing: PropTypes.bool.isRequired,
+    hide: PropTypes.func.isRequired,
+    children: PropTypes.array,
+    addCloseEscape: PropTypes.bool,
+    addCloseOverlay: PropTypes.bool,
+    addCloseIcon: PropTypes.bool,
+    customClassName: PropTypes.string,
+    addFooterButton: PropTypes.bool,
+    spinner: PropTypes.bool,
 };
 
 export default Modal;
