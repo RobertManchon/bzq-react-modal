@@ -15,14 +15,13 @@ const App = () => {
    * Function allowing to display the loader during the indicated time
    * @return {void}
    */
-
   const spinnerTimer = () => {
     toggleSpinner();
 
     setTimeout(() => {
-      toggleModalSpinner()
+      toggleModalSpinner();
     }, 1000);
-  }
+  };
 
   return (
       <>
@@ -96,6 +95,7 @@ const App = () => {
             <h1>Hello, Modal 6 </h1>
             <p>bla bla bla 6</p>
           </Modal>
+
         </main>
       </>
   );
