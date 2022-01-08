@@ -1,4 +1,4 @@
-import 'App.css';
+import './App.css';
 import Modal from 'lib/components/Modal/Modal';
 import React from 'react';
 import useModal from 'lib/utils/useModal';
@@ -24,8 +24,16 @@ const App = () => {
   };
 
   return (
-      <>
-        <main>
+      <div className='fond'>
+
+          <div className="entete">
+            <p>
+              Démo bzq-react-modal
+            </p>
+          </div>
+
+        <div className='interieur'>
+
           <button type='submit' className='buttonDefault' onClick={toggleModal}>Modal (classic Modal)</button>
           <Modal
               isShowing={showModal}
@@ -36,7 +44,7 @@ const App = () => {
             <p>bla bla bla 1</p>
           </Modal>
 
-          <button type='submit' className='buttonDefault' onClick={toggleModalWithCloseEsc}>Modal (with closeEscape)</button>
+          <button type='submit' className='buttonDefault' onClick={toggleModalWithCloseEsc}>Modal (closeEscape)</button>
           <Modal
               isShowing={showModalWithCloseEsc}
               hide={toggleModalWithCloseEsc}
@@ -47,7 +55,7 @@ const App = () => {
             <p>bla bla bla 2</p>
           </Modal>
 
-          <button type='submit' className='buttonDefault' onClick={toggleModalWithCloseOverlay}>Modal (with closeOverlay)</button>
+          <button type='submit' className='buttonDefault' onClick={toggleModalWithCloseOverlay}>Modal (closeOverlay)</button>
           <Modal
               isShowing={showModalWithCloseOverlay}
               hide={toggleModalWithCloseOverlay}
@@ -58,7 +66,7 @@ const App = () => {
             <p>bla bla bla 3</p>
           </Modal>
 
-          <button type='submit' className='buttonDefault' onClick={toggleModalWithFooterButton}>Modal (with footerButton)</button>
+          <button type='submit' className='buttonDefault' onClick={toggleModalWithFooterButton}>Modal (+ footerButton)</button>
           <Modal
               isShowing={showModalWithFooterButton}
               hide={toggleModalWithFooterButton}
@@ -70,7 +78,7 @@ const App = () => {
             <p>bla bla bla 4</p>
           </Modal>
 
-          <button type='submit' className='buttonDefault' onClick={spinnerTimer}>Modal (with loader after 1s)</button>
+          <button type='submit' className='buttonDefault' onClick={spinnerTimer}>Modal (loader after 1s)</button>
           <Modal
               isShowing={showModalWithSpinner}
               hide={toggleModalSpinner}
@@ -83,7 +91,7 @@ const App = () => {
             <p>bla bla bla 5 </p>
           </Modal>
 
-          <button type='submit' className='buttonDefault' onClick={toggleModalWithClassName}>Modal (with customClassName)</button>
+          <button type='submit' className='buttonDefault' onClick={toggleModalWithClassName}>Modal (customClassName)</button>
           <Modal
               isShowing={showModalWithClassName}
               hide={toggleModalWithClassName}
@@ -96,8 +104,8 @@ const App = () => {
             <p>bla bla bla 6</p>
           </Modal>
 
-        </main>
-      </>
+        </div>
+      </div>
   );
 };
 

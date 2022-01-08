@@ -22,6 +22,7 @@
 
 .modal {
     background: #FFF;
+    border:2px solid red;
     border-radius: .625rem;
     margin: 1.75rem auto;
     max-width: 31.25rem;
@@ -67,9 +68,9 @@
 
 .modalButton,
 .buttonDefault {
-    background: #E66E5E;
+    background: #1e5de4;
     border: none;
-    border-radius: .3125rem;
+    border-radius: 2rem;
     color: #FFF;
     cursor: pointer;
     font-size: 1rem;

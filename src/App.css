@@ -1,8 +1,48 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
+.body {
+    margin:auto;
+    padding-bottom:2rem;
+}
+.entete {
+    display: flex;
+    /*flex-direction: column;*/
+    justify-content: center;
 
-main {
-  display: flex;
-  justify-content: center;
+    margin: auto;
+    font-family: Arial,sans-serif;
+    font-size: 32px;
+    color: red;
+
+    background-color: #0e0200;
+    height: 80px;
+    width: 400px;
+}
+.interieur {
+    padding-right: 2rem;
+    padding-left: 1.3rem;
+    margin: auto;
+    max-width:320px;
+    height: 400px;
+    display:flex;
+    flex-direction: column;
+    background-color: rgba(51, 235, 144, 0.85);
+    border-radius: 30px;
+    justify-content: stretch;
+    border: 2px solid red;
+
+}
+main.interieur{
+    margin:auto;
+
+}
+.fond {
+    /*display: flex;*/
+    background-color: #0e0200;
+    width: 100%;
+    min-width: 747px;
+    height: 800px;
+    justify-content: space-evenly;
+    margin:auto;
 }
