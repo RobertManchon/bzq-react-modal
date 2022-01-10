@@ -16,8 +16,8 @@ Object.defineProperty(exports, "useModal", {
   }
 });
 
-var _Modal = _interopRequireDefault(require("lib/components/Modal/Modal"));
+var _Modal = _interopRequireDefault(require("./components/Modal/Modal"));
 
-var _useModal = _interopRequireDefault(require("lib/utils/useModal"));
+var _useModal = _interopRequireDefault(require("./utils/useModal"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

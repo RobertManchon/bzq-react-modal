@@ -7,14 +7,11 @@
 }
 .entete {
     display: flex;
-    /*flex-direction: column;*/
     justify-content: center;
-
     margin: auto;
     font-family: Arial,sans-serif;
     font-size: 32px;
     color: red;
-
     background-color: #0e0200;
     height: 80px;
     width: 400px;
@@ -33,16 +30,13 @@
     border: 2px solid red;
 
 }
-main.interieur{
-    margin:auto;
 
-}
 .fond {
-    /*display: flex;*/
+
     background-color: #0e0200;
     width: 100%;
     min-width: 747px;
-    height: 800px;
+    height: 100vh;
     justify-content: space-evenly;
     margin:auto;
 }

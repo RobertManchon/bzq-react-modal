@@ -1,36 +1,29 @@
-import {
-    useState
-} from 'react';
+import { useState } from 'react';
 
 const useModal = () => {
-    const [isShowing, setIsShowing] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [activeModal, setActiveModal] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    /**
-     * Function allowing to change the state in order to make the modal appear or not
-     * If the modal is displayed, we remove the spinner
-     * @return {void}
-     */
-    const toggle = () => {
-        setIsShowing(!isShowing);
-        if (!isShowing) {
+    const handleOpenModal = val => {
+        setActiveModal(val);
+        setShowModal(!showModal);
+        if (!showModal) {
             setIsLoading(false);
-        };
+        }
+    };
+    
+    const handleCloseModal = () => {
+        setShowModal(!showModal);
+        setActiveModal('');
     };
 
-    /**
-     * Function allowing to change the state in order to make the spinner appear or not
-     * @return {void}
-     */
     const toggleSpinner = () => {
         setIsLoading(!isLoading);
-    };
+    }
 
     return {
-        isShowing,
-        toggle,
-        isLoading,
-        toggleSpinner
+        showModal, activeModal, handleOpenModal, handleCloseModal, isLoading, toggleSpinner
     };
 };
 

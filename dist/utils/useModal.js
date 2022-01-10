@@ -10,36 +10,33 @@ require("core-js/modules/web.dom-collections.iterator.js");
 var _react = require("react");
 
 const useModal = () => {
-  const [isShowing, setIsShowing] = (0, _react.useState)(false);
+  const [showModal, setShowModal] = (0, _react.useState)(false);
+  const [activeModal, setActiveModal] = (0, _react.useState)('');
   const [isLoading, setIsLoading] = (0, _react.useState)(false);
-  /**
-   * Function allowing to change the state in order to make the modal appear or not
-   * If the modal is displayed, we remove the spinner
-   * @return {void}
-   */
 
-  const toggle = () => {
-    setIsShowing(!isShowing);
+  const handleOpenModal = val => {
+    setActiveModal(val);
+    setShowModal(!showModal);
 
-    if (!isShowing) {
+    if (!showModal) {
       setIsLoading(false);
     }
-
-    ;
   };
-  /**
-   * Function allowing to change the state in order to make the spinner appear or not
-   * @return {void}
-   */
 
+  const handleCloseModal = () => {
+    setShowModal(!showModal);
+    setActiveModal('');
+  };
 
   const toggleSpinner = () => {
     setIsLoading(!isLoading);
   };
 
   return {
-    isShowing,
-    toggle,
+    showModal,
+    activeModal,
+    handleOpenModal,
+    handleCloseModal,
     isLoading,
     toggleSpinner
   };
