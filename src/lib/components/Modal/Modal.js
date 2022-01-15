@@ -1,8 +1,8 @@
-import 'lib/components/Modal/Modal.css';
+import './Modal.css';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import Spinner from 'lib/components/Spinner/Spinner';
+import Spinner from '../Spinner/Spinner';
 
 /**
  * React component allowing to create a modal with different customization parameters
@@ -20,19 +20,19 @@ import Spinner from 'lib/components/Spinner/Spinner';
  * @return {void}
  */
 const Modal = ({
-    isOpen={
-        showModal : false,
-        activeModal: '',
-    },
-    close,
-    children,
-    addCloseEscape,
-    addCloseOverlay,
-    addCloseIcon,
-    customClassName,
-    addFooterButton,
-    spinner
-}) => {
+                   isOpen={
+                       showModal : false,
+                       activeModal: '',
+                   },
+                   close,
+                   children,
+                   addCloseEscape,
+                   addCloseOverlay,
+                   addCloseIcon,
+                   customClassName,
+                   addFooterButton,
+                   spinner
+               }) => {
     useEffect(() => {
         return window.addEventListener('keyup', (e) => {
             if (addCloseEscape) {
@@ -62,57 +62,57 @@ const Modal = ({
         };
     };
 
-    return isOpen 
-    ? ReactDOM.createPortal(
-        <div 
-            className={`modalOverlay ${customClassName ? 'modalOverlay-' + customClassName : ''}`} 
-            onClick={addCloseOverlay ? closeModal : null}
-        >
-            <aside className={`modalWrapper ${customClassName ? 'modalWrapper-' + customClassName : ''}`} >
-                <section 
-                    className={`modal ${customClassName ? 'modal-' + customClassName : ''}`} 
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    <header className={`modalHeader ${customClassName ? 'modalHeader-' + customClassName : ''}`} >
-                        {addCloseIcon 
-                            && (
-                                <button 
-                                    aria-label='Close' 
-                                    className={`modalCloseButton ${customClassName ? 'modalCloseButton-' + customClassName : ''}`}
-                                    data-dismiss='modal' 
-                                    onClick={close}
-                                    type='button' 
-                                >
-                                    <i className="fas fa-times"></i>
-                                </button>
-                            )
-                        }
-                    </header>
-                    <section className={`modalSection ${customClassName ? 'modalSection-' + customClassName : ''}`}>
-                        {children}
+    return isOpen
+        ? ReactDOM.createPortal(
+            <div
+                className={`modalOverlay ${customClassName ? 'modalOverlay-' + customClassName : ''}`}
+                onClick={addCloseOverlay ? closeModal : null}
+            >
+                <aside className={`modalWrapper ${customClassName ? 'modalWrapper-' + customClassName : ''}`} >
+                    <section
+                        className={`modal ${customClassName ? 'modal-' + customClassName : ''}`}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <header className={`modalHeader ${customClassName ? 'modalHeader-' + customClassName : ''}`} >
+                            {addCloseIcon
+                                && (
+                                    <button
+                                        aria-label='Close'
+                                        className={`modalCloseButton ${customClassName ? 'modalCloseButton-' + customClassName : ''}`}
+                                        data-dismiss='modal'
+                                        onClick={close}
+                                        type='button'
+                                    >
+                                        <i className="fas fa-times"></i>
+                                    </button>
+                                )
+                            }
+                        </header>
+                        <section className={`modalSection ${customClassName ? 'modalSection-' + customClassName : ''}`}>
+                            {children}
+                        </section>
+                        <footer className={`modalFooter ${customClassName ? 'modalFooter-' + customClassName : ''}`}>
+                            {addFooterButton
+                                && (
+                                    <button
+                                        className={`modalButton ${customClassName ? 'modalButton-' + customClassName : ''}`}
+                                        onClick={close}
+                                    >
+                                        Close Modal
+                                    </button>
+                                )
+                            }
+                        </footer>
                     </section>
-                    <footer className={`modalFooter ${customClassName ? 'modalFooter-' + customClassName : ''}`}>
-                        {addFooterButton
-                            && (
-                                <button 
-                                    className={`modalButton ${customClassName ? 'modalButton-' + customClassName : ''}`} 
-                                    onClick={close}
-                                >
-                                    Close Modal
-                                </button>
-                            )
-                        }
-                    </footer>
-                </section>
-            </aside>
-        </div>, document.body
-    )
-    : spinner 
-    ? ReactDOM.createPortal
-(
-    <Spinner customClassName={customClassName}/>, document.body
-)
-: null;
+                </aside>
+            </div>, document.body
+        )
+        : spinner
+            ? ReactDOM.createPortal
+            (
+                <Spinner customClassName={customClassName}/>, document.body
+            )
+            : null;
 };
 
 Modal.defaultProps = {

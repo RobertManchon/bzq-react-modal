@@ -1,7 +1,8 @@
 {
   "name": "bzq-react-modal",
   "author": "Robert Manchon <erasme666@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.2.1",
+  "description": "React component to easily create customizable modals",
   "license": "MIT",
   "private": false,
   "main": "dist/index.js",
@@ -30,6 +31,7 @@
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^12.8.3",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
+    "bzq-react-modal": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -42,7 +44,7 @@
     "start": "react-scripts start",
     "del_dist": "rd /s dist",
     "build": "babel src/lib --out-dir dist --copy-files",
-    "build-front-end": "BUILD_PATH='./doc' react-scripts build",
+    "build-front-end": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

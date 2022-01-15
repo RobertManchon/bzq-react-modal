@@ -1,6 +1,5 @@
 import './App.css';
-import Modal from 'lib/components/Modal/Modal';
-import useModal from 'lib/utils/useModal';
+import {Modal,useModal} from 'bzq-react-modal';
 
 const App = () => {
   const { showModal, activeModal, handleOpenModal, handleCloseModal, isLoading, toggleSpinner } = useModal();
